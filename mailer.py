@@ -1,4 +1,4 @@
-import smtplib,ssl
+import smtplib,ssl,csv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email import encoders
@@ -9,9 +9,9 @@ receiver_mail="sunita.tyagi1967@gmail.com"
 password=input("type your password and press enter: ")
 
 message=MIMEMultipart("alternative")
-message["Subject"]="Tyagi"
+message["Subject"]="Shubham Tyagi"
 message["From"]=sender_mail
-message["To"]=receiver_mail
+# message["To"]=receiver_mail
 
 # message body is defined here
 text="""\
@@ -22,7 +22,7 @@ html="""\
 <html>
     <body>
         <h2>Tyagi</h2>
-        Check this mail out.
+        Check this mail out.{name}
         <a href="www.amazon.in">great deals</a>
     </body>
 </html>"""
@@ -46,8 +46,19 @@ part3.add_header(
 message.attach(part3)
 
 context=ssl.create_default_context()
+# with smtplib.SMTP_SSL("smtp.gmail.com",port,context=context) as server :
+#     server.login(sender_mail,password)
+#     server.sendmail(sender_mail,receiver_mail,message.as_string())
+
+count=0
 with smtplib.SMTP_SSL("smtp.gmail.com",port,context=context) as server :
     server.login(sender_mail,password)
-    server.sendmail(sender_mail,receiver_mail,message.as_string())
-
-print ("message sent")
+    with open("document.csv") as file:
+        reader=csv.reader(file)
+        next(reader) 
+        for name,email in reader:
+            message["To"]=email
+            text=message.as_string()
+            server.sendmail(sender_mail,email,text.format(name=name),)
+            count=count+1
+print ("message sent {count}")
