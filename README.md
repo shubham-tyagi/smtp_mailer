@@ -1,6 +1,6 @@
 # SMTP Mailer
 
-Send personalised mails from your domain-email to n-number of people from your terminal.
+Send personalised mails from your personal email to n-number of people from your terminal.
 
 ## Features
 
