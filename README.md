@@ -26,6 +26,8 @@ Send personalised mails from your personal email to n-number of people from your
 
   * Run ```python mailer.py``` or ```python3 mailer.py``` in case you have more than one versions of python installed on your system.  
   
+  * you need to allow less secure app access of your amount for the amount of time you want to send mails [ allow less secure apps][4]
+  
   * Voila! Mails must have triggered by now.
   
 ## Contributions
@@ -43,3 +45,4 @@ Send personalised mails from your personal email to n-number of people from your
 [1]: https://github.com/shubham-tyagi/smtp_mailer
 [2]: http://shubhamtyagi.me
 [3]: https://www.pythonforbeginners.com/basics/how-to-use-python-virtualenv/
+[4]: https://myaccount.google.com/lesssecureapps
